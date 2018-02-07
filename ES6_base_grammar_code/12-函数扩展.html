@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数扩展</title>
+</head>
+<body>
+
+<script>
+    // 1. 形参可以设置默认值
+    // 我们之前函数为了不出错，会给参数设置一个默认值。防止不传参等引起bug
+     function sum(num1, num2) {
+         num1 = num1 || 10;
+         num2 = num2 || 10;
+         console.log(num1 + num2);
+     }
+
+     //但是我们在ES6中的话，可以在形参中直接设置默认值
+    function sum1(num1 = 10, num2 = 10) {
+        console.log(num1 + num2);
+    }
+
+    sum(1,1);//2
+    sum();//20
+    sum1(1,1);//2
+    sum1();//20
+
+    // 2. 参数的形式可以使用延展操作符
+    // 之前，如果我们要对传入的参数进行遍历运算的话，都要用到arguments
+    // 但是我们如果传入的参数数据类型不同的话，使其运算就变得费力起来
+    // 我们看下面的这个例子
+    function sum2() {
+        let result = 0;
+        for(let value of arguments){
+            result += value;
+        }
+        return result;
+    }
+
+    console.log(sum2(1, 2, 3, 4, 5, 6));//21
+    //这是我们之前的方法。如果我们传入其他类型的话
+    console.log(sum2('路飞',1, 2, 3, 4, 5, 6));//0路飞123456
+    //我们看到它全部转换成了字符串
+
+    //在ES6中，我们看下面的例子
+     function sum3(name, skill, ...nums) {
+         let result = 0;
+         console.log(name);
+         console.log(skill);
+         for(let value of nums){
+             result += value;
+         }
+         return result;
+     }
+
+    console.log(sum3('路飞', '四挡', 1,2,3,4,5,6));
+     //我们看到输出了 路飞   四挡    21
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>class的基本应用</title>
+</head>
+<body>
+
+<script>
+    //在ES5中我们是基于原型，通过构造函数来面向对象的
+    //如下：创建一个构造函数
+    function Person(name,skill){
+        this.name = name;
+        this.skill = skill;
+    }
+
+    Person.prototype = {
+        constructor : Person,
+        print(){
+            console.log("我是" + this.name + "我会" + this.skill);
+        }
+    };
+
+    var person = new Person("路飞","四挡");
+    person.print();//我是路飞我会四挡
+
+    //以上是我们在ES5中面向对象的方式
+
+    //那么在ES6中我们该怎么做呢？
+    class Person{
+        constructor(name, skill){
+            this.name = name ;
+            this.skill = skill;
+        }
+        print(){
+            console.log("我是" + this.name + "我会" + this.skill);
+        }
+    }
+
+    let person = new Person("路飞","四挡");
+    person.print();//我是路飞我会四挡
+    //class只是做了一层包装，底层还是一样的，让编程更加规范
+</script>
+</body>
+</html>

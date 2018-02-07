@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>数据集合-map</title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+
+    <script>
+        'use strict'
+        //5.keys() values() entries()
+         let obj1 = {a:1}, obj2 = {b:2};
+         const map = new Map([
+            ['name','路飞'],
+            ['skill','四挡'],
+            ['sex','男'],
+            [[1,2],'数组'],
+            [obj1,'对象1'],
+            [obj2,'对象2'],
+         ]);
+         console.log(map.keys());
+         //MapIterator {"name", "skill", "sex", Array(2), {…}, {…}}
+         //获取所有的键
+         console.log(map.values());
+         //MapIterator {"路飞", "四挡", "男", "数组", "对象1","对象2"}
+         //获取所有的值
+         console.log(map.entries());
+         //MapIterator {"name" => "路飞", "skill" => "四挡", "sex" => "男", Array(2) => "数组", {…} => "对象1", {…} => "对象2"}
+         //获取所有的键值
+
+
+         //遍历
+         map.forEach(function(index,value){
+            console.log(index +':'+ value)
+         })
+
+         //注意事项
+         //当设置数据的键都是空对象时
+         map.set({},'空对象1');
+         map.set({},'空对象2');
+         console.log(map);
+         //我们可以看到空对象1和空对象2都输出了
+         // {Object => "空对象1"}
+         // {Object => "空对象2"}
+         //那是因为对象是复杂数据类型，即使都是空对象他们的地址也是不同的，所以键也不同
+
+
+    </script>
+</body>
+</html>

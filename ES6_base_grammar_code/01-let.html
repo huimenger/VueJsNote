@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>let和const</title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    <script>
+        'use strict'
+        //let 用来 声明 变量
+        //1.作用域只限于当前代码块
+        {
+            var str = "路飞";
+            console.log(str);//输出路飞
+
+            let str1 = "索隆";
+            console.log(str1);//输出索隆
+        }
+
+        console.log(str);//输出路飞
+        console.log(str1);//报错 str1 is not defined
+
+
+        //2.作用域不会被提升
+        //之前var声明的变量会被提升
+        //而let声明的是不会被提升的
+        {
+            console.log(str);//输出undefined
+            var str = "路飞";
+
+            console.log(str1);//报错 str1 is not defined
+            let str1 = "索隆";
+        }
+
+        //3.在相同的作用域下不能声明相同的变量
+        {
+            var str = "路飞";
+            var str = "索隆";
+            console.log(str);//输出索隆
+
+            let str1 = "娜美";
+            let str1 = "罗宾";
+            console.log(str1);//报错"str1" has already been declared
+        }
+
+        //4.父子作用域不同（使用for循环验证）
+        //首先我们看一段问题代码。如下（输出全部为10）
+       for(var i = 0 ; i < 10; i++){
+           setTimeout(function(){
+               console.log(i);
+           },0);
+       }
+       //for循环是同步事件，setTimeout则异步加载，导致了这样的结果
+       //为了解决以上代码的问题，我们可以用闭包解决
+       for(var i = 0; i< 10; i++){
+            setTimeout(function (j){
+                return function(){
+                    console.log(j);
+                };
+            }(i), 0);
+        }
+        //输出了0~9
+        //由于函数封闭起来，有了单独的作用域，与外面的i没关系，因此得到了i的值
+
+        //然而在ES6中，let声明i的话，可以直接
+        for(let i = 0 ; i < 10; i++){
+           setTimeout(function(){
+               console.log(i);
+           },0);
+       }
+       //输出了0~9
+       //由于let声明的父子作用域不同，所以i本来就是有单独的作用域，不会被外面的i影响
+       //这正体现了ES6对作用域的规范
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Symbol</title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+
+    <script>
+        'use strict'
+        // 1. 定义
+        let str1 = Symbol();
+        let str2 = Symbol();
+
+        console.log(str1 === str2);//false
+        console.log(typeof str1);//symbol
+        console.log(typeof str2);//symbol
+
+        // 2.描述
+        let str3 = Symbol('name');
+        let str4 = Symbol('name');
+
+        console.log(str3);//Symbol(name)
+        console.log(str4);//Symbol(name)
+        console.log(str3 === str4);//false
+
+        // 3. 常用作对象的属性名
+        const obj = {};
+        obj.name = '张三';
+        obj.name = '李四';
+        console.log(obj);//{name: "李四"}
+        //说明name被覆盖了
+
+        obj[Symbol('name')] = '张三';
+        obj[Symbol('name')] = '李四';
+        console.log(obj);//{name: "李四", Symbol(name): "张三", Symbol(name): "李四"}
+        //说明symbol实例的是不会被覆盖的
+    </script>
+</body>
+</html>

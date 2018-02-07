@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>内置对象扩展</title>
+    <style>
+        .strclass{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+<ul>
+    <li>1111</li>
+    <li>1111</li>
+    <li>1111</li>
+    <li>1111</li>
+    <li>1111</li>
+    <li>1111</li>
+</ul>
+
+<script>
+    // 1. 模板字符串
+    //在传统的做法使用模板字符串的时候，需要使用大量的""（双引号）和 + 来拼接才能得到我们需要的模版。但是这样是十分不方便的
+    //于是ES6中提供了模版字符串，用`（反引号）标识，用${}将变量括起来。
+    //模版字符串可以引入变量，不使用变量也是可以的。
+    //注意：如果使用模版字符串表示多行字符串，所有的空格和缩进都会被保存在输出中！！
+     let str = '我要成为海贼王';
+     let className = 'strclass';
+     let html = `<html>
+                 <head></head>
+                     <body>
+                     <p>天然卷发的都是好人</p>
+                     <div class="${className}">${str}</div>
+                     </body>
+                 </html>`;
+     console.log(html);//输出的字符串带缩进全部输出
+
+    // 2. 数组的扩展
+    // Array.from 把其他对象转换成数组。
+    //我们看下面的例子，我们在上面写了一个列表，我们获取这个列表中所有的li
+     let Lis = document.querySelectorAll('li');
+     console.log(Lis);//NodeList(6) [li, li, li, li, li, li]
+     console.log(Array.isArray(Lis));//false
+     //我们可以看不到Lis并不是一个数组
+
+    //然后我们使用Array.from
+     console.log(Array.from(Lis));//(6) [li, li, li, li, li, li]
+     console.log(Array.isArray(Array.from(Lis)));//true
+    //我们发现它就变成了一个数组
+
+    // Array.of 创建一个具有可变数量参数的新数组实例，而不考虑参数的数量或类型
+    // 简单的说，Array.of方法把一些零散的东西组合成数组。
+    console.log(Array.of(1, 2, 3, 4));
+    console.log(Array.of('路飞', '索隆', '山治'));
+
+    // 3. 对象的扩展
+    //我们在创建一个对象的时候，当 key 和 value是一样的时候,写一个就可以了
+    //如下：
+     let name = '路飞';
+     let skill = '四挡';
+     let person = {
+     name,
+     skill
+     };
+     console.log(person);//{name: "路飞", skill: "四挡"}
+
+    // Object.assign() 把一个或多个源对象的可枚举属性值复制到目标对象中，返回值为目标对象。
+    let obj1 = {name: '路飞'};
+    let obj2 = {skill: '四挡'};
+    let obj3 = {duty: '船长'};
+    let obj4 = {friends: '索隆'};
+    let obj = {};
+    Object.assign(obj, obj1, obj2, obj3, obj4);
+    console.log(obj);//{name: "路飞", skill: "四挡", duty: "船长", friends: "索隆"}
+
+</script>
+</body>
+</html>

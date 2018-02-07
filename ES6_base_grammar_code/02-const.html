@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>let和const</title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+
+    <script>
+        'use strict'
+        //const 用作声明常量
+
+        //同let一样的特点
+        //1.只能在当前代码块中有效
+        //2.作用域不会被提升
+        //3.不能重复声明
+
+        //不同于let的特点
+        //4.声明的常量必须赋值
+        {
+            const name;
+            name = "路飞";
+            console.log(name);//报错：Missing initializer in const declaration
+        }
+
+        //5.声明的是常量而不是变量。常量是不能改变的
+        {
+            const name = "索隆";
+            name = "路飞";
+            console.log(name);//报错：Assignment to constant variable.
+        }
+
+        //但是如果声明的是对象，即使改变属性也不会报错
+        {
+            const obj = {
+                name:"路飞"
+            };
+            console.log(obj);
+            //Object
+            //name: "索隆"
+            //__proto__: Object
+
+            obj.name = "索隆";
+            console.log(obj);
+            //Object
+            //name: "索隆"
+            //__proto__: Object
+        }
+        //因为在内存中对象是在堆区，通过地址描述出来，我们声明的放在栈区的只是地址。所以当改变对象，他的地址并没有改变
+    </script>
+</body>
+</html>

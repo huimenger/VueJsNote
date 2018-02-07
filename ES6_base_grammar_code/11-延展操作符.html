@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>延展操作符和解构的简单实际应用</title>
+</head>
+<body>
+<div>测试1</div>
+<div>测试2</div>
+<div>测试3</div>
+<div>测试4</div>
+<div>测试5</div>
+<div>测试6</div>
+<div>测试7</div>
+<div>测试8</div>
+<script>
+    // 延展操作符
+    // 大部分时候用作数据的传递
+    // 作用1：改变函数的调用
+    // 将数组作为函数的参数传递进去的时候，通常使用的方法是apply方法，例如下面的例子
+    let members = ['路飞','索隆'];
+    let otherMembers = ['山治','乔巴'];
+    Array.prototype.push.apply(members,otherMembers);
+    console.log(members); // (4) ["路飞", "索隆", "山治", "乔巴"]
+    // 这是我们之前的做法
+    // 但是这样写起来并不方便，现在我们可以使用延展操作符
+    // 它可以将数组，更确切的说是（可遍历对象）进行展开然后作为函数参数进行调用。
+    // 只需要像下面简单地直接调用push方法就行了。
+    let members1 = ['路飞','索隆'];
+    let otherMembers1 = ['山治','乔巴'];
+    members1.push(...otherMembers1);
+    console.log(members1); //  (4) ["路飞", "索隆", "山治", "乔巴"]
+
+    // 作用2：数组构造
+    // 在延展操作符之前，我们如果想让一个数组成为另一个数组的一部分
+    // 不可避免地就要用到push, splice, concat等等。
+    // 现在，延展操作符允许我们简单地操作就能实现，如下面代码
+    let members2 = ['路飞','索隆'];
+    let allMembers2 = ['山治','乔巴','乌索普','弗兰奇','布鲁克','娜美','罗宾','甚平',...members2];
+    console.log(allMembers2);
+    //(10) ["山治", "乔巴", "乌索普", "弗兰奇", "布鲁克", "娜美", "罗宾", "甚平", "路飞", "索隆"]
+
+    // 除此之外，我们还可以使用它来快速复制一个数组。
+    let arr = [1, 2, 3];
+    let arr2 = [...arr]; // 像是 arr.slice() 方法一样
+    arr2.push(4);
+    console.log(arr2);//(4) [1, 2, 3, 4]
+    // arr 不受影响 arr2成了  [1, 2, 3, 4]
+
+    // 作用3：数组解构
+    // 除了可以快速构造数组之外，还可以用来实现数组的解构。
+    // 可以用来提取数组中的部分值，并且提取的结果是一个数组对象。
+    // 注意延展操作符总是应该位于解构赋值的最后一个位置。如下例子：
+    let members3 = ['路飞','索隆','山治','乔巴','乌索普'];
+    let captain, otherMembers3 ;
+    [captain, ...otherMembers3] = members3 ;
+    console.log(captain); // 路飞
+    console.log(otherMembers3); // (4) ["索隆", "山治", "乔巴", "乌索普"]
+
+    // 作用4：将类数组对象转换成数组
+    // 前面我们在讲Array.from的时候知道他可以将类数组对象转换成数组，
+    // 其实我们的延展操作符也可以将一个类数组对象中索引范围在[0,length)之间的所有属性的值添加到一个数组中
+    // 这样可以得到一个真正的数组。看以下例子：
+    let nodeList = document.querySelectorAll('div');
+    let array = [...nodeList];
+    console.log(array);//(8) [div, div, div, div, div, div, div, div]
+    console.log(Array.isArray(array));//true
+    // 利用这个特性，我们可以完成数组的去重
+    // 之前我们说过了set 和 map 是可以去重的。但是set去重之后类型是set数据集合
+    // 我们看下面例子：
+    let arr3 = [1,2,3,4,5,4,3,2,1];
+    let set = new Set(arr3);
+    console.log(set);//Set(5) {1, 2, 3, 4, 5}
+    console.log(Array.isArray(set));//false
+    console.log([...set]);//(5) [1, 2, 3, 4, 5]
+    console.log(Array.isArray([...set]));//true
+</script>
+</body>
+</html>

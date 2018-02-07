@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>箭头函数</title>
+</head>
+<body>
+
+<script>
+    // 箭头函数
+    // ES6最大的特点是箭头函数表达式
+    // 箭头函数表达式的语法比函数表达式更短，
+    // 并且不绑定自己的this，arguments，super或 new.target。
+    // 这些函数表达式最适合用于非方法函数，并且它们不能用作构造函数。
+
+    // 它的定义用的就是一个箭头：
+    // () => {}
+    //我们先来看一个我们之前写的函数：
+/*    function sum(num1, num2){
+        return num1 + num2;
+    }*/
+    //我们用箭头函数来写上面那个函数就是下面的结果
+    let sum = (num1, num2)=>{ return num1 + num2;};
+    console.log(sum(100, 300)); //400
+
+    // 箭头函数相当于匿名函数，并且简化了函数定义。
+    // 当参数只有一个的时候可以省略括号
+    let product = x => x * x;
+    //相当于function (x) {return x * x;}
+    console.log(product(7));//49
+
+    // 没有参数的函数应该写成一对圆括号。
+    let myIntrs = () => {
+        console.log('我要成为海贼王');
+    };
+    myIntrs();//我要成为海贼王
+
+    // 如果要返回一个对象，就要注意，如果是单表达式，这么写的话会报错：
+    // SyntaxError:
+    // x => { foo: x };
+    // 因为和函数体的{ ... }有语法冲突，所以要改为：
+    // x => ({ foo: x })
+
+    // this
+    // 箭头函数看上去是匿名函数的一种简写，
+    // 但实际上，箭头函数和匿名函数有个明显的区别：箭头函数内部的this是词法作用域，由上下文确定。
+    // 我们看下面这个例子
+    function demo() {
+        setTimeout(function () {
+            console.log(this); //window，本来我们指向了obj对象，但是却指向了obj
+        }, 1000);
+
+        setTimeout(()=>{
+            console.log(this); // obj，我们不需要担心this的指向。
+        }, 1000);
+    }
+
+    let obj = {};
+    demo.call(obj);
+</script>
+</body>
+</html>

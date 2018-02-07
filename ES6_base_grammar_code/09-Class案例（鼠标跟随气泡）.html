@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>案例：鼠标跟随气泡</title>
+    <style>
+        body{
+            margin: 150px;
+        }
+
+        #cvs{
+            box-shadow: 0 0 10px #000;
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="cvs" width="1000" height="600">您的浏览器不支持H5画布，请升级。</canvas>
+
+<!--underScore.js库，如果不会的，可以去查看中文文档，或者看我之前的文章-->
+<script src="js/underScore.min.js"></script>
+
+<script>
+    //获取画布
+    const cvs = document.getElementById('cvs');
+    const ctx = cvs.getContext('2d');
+
+    //气泡类
+    class Bubble{
+        /**
+         * 构造器
+         * */
+        constructor(x,y,color){
+            this.x = x;
+            this.y = y;
+            this.color = color;
+            this.r = 40;
+        }
+        /**
+         * 绘制一个气泡
+         * */
+        draw(){
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+            ctx.restore();
+        }
+    }
+
+    //动起来的气泡
+    class Movebubble extends Bubble{
+        constructor(x, y, color){
+            super(x, y, color);
+
+            //量的变化
+            this.dX = _.random(-5,5);
+            this.dY = _.random(-5,5);
+            this.dR = _.random(1,3);
+        }
+
+        upData(){
+            this.x += this.dX;
+            this.y += this.dY;
+            this.r -= this.dR;
+            if(this.r < 0 ){
+                this.r = 0;
+            }
+        }
+    }
+
+    //创建一个存储气泡的数组
+    let BubbleArr = [];
+
+    //气泡颜色集合
+    let colorArr = [ 'orange', 'orchid', 'palegoldenrod', 'palegreen', 'paleturquoise', 'peru','pink'];
+
+    //监听鼠标移动事件
+    cvs.addEventListener('mousemove', function (e) {
+        BubbleArr.push( new Movebubble(e.offsetX, e.offsetY, colorArr[_.random(0, colorArr.length - 1 )]));
+        console.log(BubbleArr);
+    });
+
+    //开启定时器
+    setInterval(function () {
+        //每产生一个清除之前的绘制
+        ctx.clearRect(0,0,cvs.width,cvs.height);
+
+        //绘制
+        for (let i = 0; i < BubbleArr.length; i++) {
+            BubbleArr[i].draw();
+            BubbleArr[i].upData();
+        }
+    },50);
+</script>
+</body>
+</html>

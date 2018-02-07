@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>解构赋值</title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+
+    <script>
+        'use strict'
+        //1.基本用法
+        let [name,skill,sex] = ["路飞","橡胶橡胶果实","男"];
+        console.log(name);//路飞
+        console.log(skill);//橡胶橡胶果实
+        console.log(sex);//男
+
+        //2.对象的解构赋值
+        let {name,skill,sex} = {name:"路飞",skill:"橡胶橡胶果实",sex:"男"};
+        console.log(name);//路飞
+        console.log(skill);//橡胶橡胶果实
+        console.log(sex);//男
+
+        //需要注意：
+        //对象的解构赋值的键必须一一对应，如果不对应则会出错
+        let {name,skill,friends} = {name:"路飞",skill:"橡胶橡胶果实",sex:"男"};
+        console.log(name);//路飞
+        console.log(skill);//橡胶橡胶果实
+        console.log(friends);//undefined
+
+        //对象解构赋值的键对应的值可以是复杂数据类型
+        let {name,skill,friends,teacher} = {name:"路飞",skill:"橡胶橡胶果实",friends:["索隆","山治","乔巴"],teacher:{name:"雷利",weight:"霸王色"}};
+        console.log(name);//路飞
+        console.log(skill);//橡胶橡胶果实
+        console.log(friends);//["索隆","山治","乔巴"]
+        console.log(teacher);//{name:"雷利",weight:"霸王色"}
+
+        //解构赋值需要是键对应键值对，而不能键值对对应键值对
+        let {name:str}={name:"路飞"};
+        console.log(name);//什么都没有输出
+        console.log(str);//路飞
+        //当你用键值对对应键值对，它并不能完全解析，所以请按照键对应键值对的方式来写。
+
+        //3.数组的解构赋值
+        //数组的元素同样可以是复杂数据类型
+        let [arr1,arr2,obj1] = [[1,2,3],20,{name:"路飞",sex:"男"}];
+        console.log(arr1);//[1,2,3]
+        console.log(arr2);//20
+        console.log(obj1);//{name:"路飞",sex:"男"}
+
+        //当对应的值为空时，输出undefined
+        let [arr1] = [];
+        console.log(arr1);//undefined
+        //看以下案例
+        let [a, , ,d] = [1,2,3]
+        console.log(a);//1
+        console.log(d);//undefined
+        //说明，即使是空他们也对应的2,3，因此，d对应的就是空，即为undefined
+
+        //4.基本类型的解构赋值（开发中很少用到）
+        let [a,b,c,d,e] = "我爱海贼王";
+        console.log(a);//我
+        console.log(b);//爱
+        console.log(c);//海
+        console.log(d);//贼
+        console.log(e);//王
+    </script>
+</body>
+</html>
