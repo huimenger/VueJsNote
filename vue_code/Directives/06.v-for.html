@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 数组 -->
+        <p v-for="(num, index) in arr">
+            {{index + ':' + num}}
+        </p>
+        <!-- 对象 -->
+        <p v-for="o in obj">
+            {{o}}
+        </p>
+        <!-- 字符串 -->
+        <p v-for="str in name">
+            {{str}}
+        </p>
+        <p v-for="p in phone">
+            {{p}}
+        </p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        new Vue({
+           el: '#app',
+            data: {
+               arr: [100, 87, 88, 80],
+               obj: {name:'路飞', skill: "橡胶"},
+               name: 'Luffy',
+               phone: '123456789'
+            }
+        });
+    </script>
+</body>
+</html>

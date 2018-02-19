@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue初体验</title>
+</head>
+<body>
+<div id="app">
+    <p>{{message}}</p>
+    <input type="text" v-model="message">
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    //创建vue实例
+    let vm = new Vue({
+        el:'#app',
+        data:{  //vue中的model -> 数据
+            message:"你好，我是暖炉先生",
+        }
+    })
+</script>
+</body>
+</html>

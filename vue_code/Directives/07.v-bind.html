@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>v-bind</title>
+    <style>
+        .active{
+            background-color: orangered;
+            font-size: 20px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!-- 绑定一个属性 -->
+    <img v-bind:src="imageSrc">
+
+    <!-- 缩写 -->
+    <img :src="imageSrc">
+
+    <!-- 内联字符串拼接 -->
+    <img :src="'http://' + imageSrc1">
+
+    <!-- class 绑定 -->
+    <p v-for="(group, index) in groups" :class="index === activeIndex ? 'active': ''">
+        {{group}}
+    </p><!--
+    <div :class="{ red: isRed }"></div>
+    <div :class="[classA, classB]"></div>
+    <div :class="[classA, { classB: isB, classC: isC }]"> -->
+
+    <!-- style 绑定 -->
+    <p :style="{color: fontColor}">我要成为海贼王</p>
+<!--     <div :style="{ fontSize: size + 'px' }"></div>
+    <div :style="[styleObjectA, styleObjectB]"></div> -->
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+   new Vue({
+        el:'#app',
+        data:{
+            imageSrc:"http://joymepic.joyme.com/article/uploads/20174/191495184690193676.jpeg",
+            imageSrc1:"joymepic.joyme.com/article/uploads/20174/191495184690193676.jpeg",
+            groups: [
+               '草帽海贼团',
+               '红发海贼团',
+               '白胡子海贼团',
+               '黑胡子海贼团',
+               '红心海贼团'
+            ],
+            activeIndex: 0,
+            fontColor: 'orange'
+        }
+    })
+</script>
+</body>
+</html>

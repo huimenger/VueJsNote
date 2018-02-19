@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <p v-if="show">显示</p>
+    <p v-if="hide">不显示</p>
+    <p v-if="msg == '海贼王'">海贼王</p>
+    <p v-if="num>1?1:0">显示</p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+   new Vue({
+        el:'#app',
+        data:{
+            show:true,
+            hide:false,
+            msg:'海贼王',
+            num: 2
+        }
+    })
+</script>
+</body>
+</html>
