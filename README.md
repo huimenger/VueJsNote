@@ -111,4 +111,7 @@ ES6允许按照一定模式从数组和对象中提取值
     其核心在于通过数据驱动界面的更新和展示而非JS中通过操作DOM来改变页面的显示。
 
 ## vue指令
- [点击这里](http://www.arashi.com.cn/vue-js-1.html)查看详细笔记解释.
+ [点击这里](http://www.arashi.com.cn/vue-js-directives.html)查看详细笔记解释.
+
+## vue计算属性
+ [点击这里](http://www.arashi.com.cn/vue-js-computed-properties.html)查看详细笔记解释.
