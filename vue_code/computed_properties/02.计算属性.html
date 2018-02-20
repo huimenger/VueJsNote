@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算属性</title>
+</head>
+<body>
+    <div id="app">
+        <p>初始值: {{name}}</p>
+        <p>翻转值: {{name.split('').reverse().join('')}}</p>
+        <p>函数调用: {{reverseStr()}}</p>
+        <p>计算属性: {{reverse}}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        new Vue({
+           el: '#app',
+            data: {
+               name: 'Luffy'
+            },
+            methods: {
+               reverseStr(){
+                   return this.name.split('').reverse().join('')
+               }
+            },
+            //计算属性
+            computed:{
+              //get方法
+              reverse(){
+                return this.name.split('').reverse().join('')
+              }
+            }
+        });
+    </script>
+</body>
+</html>

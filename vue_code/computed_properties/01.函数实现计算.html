@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数实现字符串反转</title>
+</head>
+<body>
+    <div id="app">
+        <p>初始值: {{name}}</p>
+        <p>翻转值: {{name.split('').reverse().join('')}}</p>
+        <p>函数调用: {{reverseStr()}}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        new Vue({
+           el: '#app',
+            data: {
+               name: 'Luffy'
+            },
+            methods: {
+               reverseStr(){
+                   return this.name.split('').reverse().join('')
+               }
+            }
+        });
+    </script>
+</body>
+</html>
