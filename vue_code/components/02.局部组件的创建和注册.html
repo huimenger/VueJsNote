@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>局部组件</title>
+</head>
+<body>
+    <div id="app">
+        <my-date></my-date>
+        <my-color></my-color>
+    </div>
+
+    <div id="app1">
+        <my-date></my-date>
+        <my-color></my-color>
+    </div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <!-- 这里注意一下，请用本地的vue文件，否则控制台出错也不会报错 -->
+    <script src="../js/vue.js"></script>
+    <script>
+        // 1.创建组件构造器
+        let Profile = Vue.extend({
+            // 1.1 模板选项
+            // 创建一个模板，以便重复使用。
+            template: `
+                <div>
+                     <input type="date">
+                     <p>马上就要过年了!</p>
+                </div>
+                `
+        });
+
+        let Profile1 = Vue.extend({
+            template:`
+                <div>
+                     <input type="color">
+                     <p>这是个取色器</p>
+                </div>`
+        });
+
+
+        new Vue({
+           el: '#app',
+           // 局部组件的注册在你要添加组件的实例中注册
+           // 使用components:{组件的标签名:组件构造器}
+           // 如果要添加多个组件，直接用逗号隔开
+           components:{
+               'my-date': Profile,
+               'my-color': Profile1
+           }
+        });
+
+        new Vue({
+            el: '#app1'
+            //app1没有注册组件my-data和my-color。所以会报错
+        });
+    </script>
+</body>
+</html>

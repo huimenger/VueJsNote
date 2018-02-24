@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全局组件</title>
+</head>
+<body>
+    <div id="app">
+        <my-date></my-date>
+        <my-color></my-color>
+    </div>
+
+    <div id="app1">
+        <my-date></my-date>
+        <my-color></my-color>
+    </div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <!-- 这里注意一下，请用本地的vue文件，否则控制台出错也不会报错 -->
+    <script src="../js/vue.js"></script>
+    <script>
+        // 注册一个全局的组件
+        // 使用Vue.component(组件的标签名,组件构造器)
+        Vue.component('my-date', {
+            // 1.1 模板选项
+            // 创建一个模板，以便重复使用。
+            template: `
+                <div>
+                     <input type="date">
+                     <p>马上就要过年了!</p>
+                </div>
+                `
+        });
+
+        new Vue({
+           el: '#app',
+           components:{
+               'my-color': {
+                    template:`
+                        <div>
+                             <input type="color">
+                             <p>这是个取色器</p>
+                        </div>`
+                }
+           }
+        });
+
+        new Vue({
+            el: '#app1'
+        });
+    </script>
+</body>
+</html>
