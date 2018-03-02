@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>slot匿名插槽</title>
+</head>
+<body>
+    <div id="app">
+        <my-slot>
+            <!-- 这里的内容就是会插入到我们预留的那个匿名插槽中，不管什么都可以，如果不放内容的话，就默认显示slot标签中的内容 -->
+            <div>
+                <img src="img/img_01.jpg" width="200" alt="" />
+            </div>
+        </my-slot>
+    </div>
+    <template id="my_slot">
+        <div class="panel">
+            <h2 class="panel-heading">面板的标题</h2>
+            <!--预留一个匿名插槽-->
+            <slot>可以替换任何标签,默认显示提示的内容</slot>
+            <footer>面板的尾部</footer>
+        </div>
+    </template>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        Vue.component('my-slot',{
+            template:'#my_slot',
+        });
+        //创建vue实例
+        new Vue({
+            el:'#app',
+        });
+    </script>
+</body>
+</html>

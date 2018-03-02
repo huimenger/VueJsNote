@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vue的组件通信</title>
+</head>
+<body>
+    <div id="app">
+        <my-div msg="我是路飞" imgsrc="img/img_01.jpg"></my-div>
+        <my-div msg="我是逗比" imgsrc="img/img_02.jpg"></my-div>
+    </div>
+    <template id="my-div">
+        <div>
+            <img :src="imgsrc" alt="" width="400" />
+            <p>{{msg}}</p>
+        </div>
+    </template>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        Vue.component('my-div',{
+            template:'#my-div',
+            props:['msg','imgsrc']
+        });
+        //创建vue实例
+        new Vue({
+            el:'#app',
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vue的slot实名插槽</title>
+</head>
+<body>
+    <div id="app">
+        <my-slot>
+            <h2 slot="header">你看，我就说这里必须是头部吧</h2>
+            <img slot="body" src="img/img_01.jpg" width="200" alt="这里是主体">
+            <p slot="footer">我是尾部</p>
+        </my-slot>
+    </div>
+    <template id="my_slot">
+        <div class="panel">
+            <slot name="header">这里必须是头部</slot>
+            <slot name="body">这里必须是身体</slot>
+            <slot name="footer">这里必须是尾部</slot>
+        </div>
+    </template>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        Vue.component('my-slot',{
+            template:'#my_slot',
+        });
+        //创建vue实例
+        new Vue({
+            el:'#app',
+        });
+    </script>
+</body>
+</html>

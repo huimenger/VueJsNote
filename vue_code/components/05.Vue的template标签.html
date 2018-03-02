@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>template标签</title>
+</head>
+<body>
+    <div id="app">
+        <my-template></my-template>
+    </div>
+    <!-- 创建一个模板 -->
+    <template id='my-template'>
+        <div>
+            <div>今天学习的是vue组件</div>
+            <input type="button" name="学习完成" value="学习完成">
+        </div>
+    </template>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        //之前我们创建组件的时候用的是ES6字符串拼接的方式
+        //但这种方式并不好用，其实我们只要用过模板引擎的都知道我们之前可以把我们要用的模板放在script标签中
+        //其实vue创建组件也可以用script标签，并且我们开发中常用的是template标签
+        //在上面我们已经创建了一个模板，那么我们来实例化一个全局组件，看看能否起效
+        Vue.component('my-template',{
+            template:'#my-template'
+        });
+        //创建vue实例
+        new Vue({
+            el:'#app',
+        });
+    </script>
+</body>
+</html>

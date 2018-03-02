@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>挂载选项data</title>
+</head>
+<body>
+    <div id="app">
+        <my-template></my-template>
+    </div>
+    <!-- 创建一个模板 -->
+    <template id='my-template'>
+        <div>{{msg}}</div>
+    </template>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        Vue.component('my-template',{
+            template:'#my-template',
+            /*
+            如果data不使用函数形式，而是对象的话会出错
+            因为如果data选项指向某个对象
+            这意味着所有的组件实例共用一个data
+            我们应当使用一个函数作为 data 选项
+            让这个函数返回一个新对象。
+             */
+            data(){
+                return {
+                    msg:"挂载选项data必须是函数。"
+                }
+            }
+        });
+        //创建vue实例
+        new Vue({
+            el:'#app',
+        });
+    </script>
+</body>
+</html>

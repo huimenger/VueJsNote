@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>script标签</title>
+</head>
+<body>
+    <div id="app">
+        <my-template></my-template>
+    </div>
+    <!-- 创建一个模板 -->
+    <script type="text/template" id="my-template">
+        <div>
+            <div>今天学习的是vue组件</div>
+            <input type="button" name="学习完成" value="学习完成">
+        </div>
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        //这里我们换成script标签
+        Vue.component('my-template',{
+            template:'#my-template'
+        });
+        //创建vue实例
+        new Vue({
+            el:'#app',
+        });
+    </script>
+</body>
+</html>

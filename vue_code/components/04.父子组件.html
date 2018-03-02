@@ -9,22 +9,24 @@
         <parent></parent>
     <!-- 没有实例化的子组件不能拿出来单独使用！ -->
         <child></child>
+        <!-- 所以报错说child没有注册 -->
     </div>
 
 
-    <script src="js/vue.js"></script>
+    <script src="../js/vue.js"></script>
     <script>
         //1.首先我们创建一些子组件
         //子组件构造器
         let Child1 = Vue.extend({
-            template: `<img src="img/img_01.jpg" width="200">`
+            template: `<img src="img/img_01.jpg" width="300">`
         });
 
         let Child2 = Vue.extend({
-            template: `<p>我认为自己很美!</p>`
+            template: `<p>我是路飞!</p>`
         });
 
-        Vue.component('child', Child1);
+        //子组件没有实例化的话，是不能单独使用的
+        //Vue.component('child', Child1);
 
         //2. 父组件构造器
         Vue.component('parent', {
