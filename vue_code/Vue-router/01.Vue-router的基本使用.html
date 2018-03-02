@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vue-router</title>
+    <!-- 我们用bootstrap演示这个效果更方便 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+    <div id="app">
+        <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+                <div class="page-header">
+                    <h2>草帽海贼团三巨头</h2>
+                </div>
+            </div>
+        </div>
+        <div class="cow">
+            <div class="col-xs-2 col-xs-offset-2">
+                <div class="list-group">
+                    <!-- 使用 router-link 组件来导航. -->
+                    <!-- 通过传入 `to` 属性指定链接. -->
+                    <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
+                    <router-link class="list-group-item"  to="/luffy">蒙奇·D·路飞</router-link>
+                    <router-link class="list-group-item"  to="/zoro">罗罗诺亚·索隆</router-link>
+                    <router-link class="list-group-item"  to="/sanji">文斯莫克·山治</router-link>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="panel">
+                    <div class="panel-body">
+                        <!-- 路由出口 -->
+                        <!-- 路由匹配到的组件将渲染在这里 -->
+                        <router-view></router-view>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <template id="luffy">
+        <div>
+            <h2>蒙奇·D·路飞</h2>
+            <p>草帽海贼团船长</p>
+            <img src="img/luffy.jpg" width="400" alt="">
+        </div>
+    </template>
+    <template id="zoro">
+        <div>
+            <h2>罗罗诺亚·索隆</h2>
+            <p>十四！！！！！</p>
+            <img src="img/zoro.jpg" width="400" alt="">
+        </div>
+    </template>
+    <template id="sanji">
+        <div>
+            <h2>文斯莫克·山治</h2>
+            <p>原谅女人的谎言才是男人。</p>
+            <img src="img/sanji.jpg" width="400" alt="">
+        </div>
+    </template>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+        const luffy = Vue.extend({
+            template:'#luffy'
+        });
+        const zoro = Vue.extend({
+            template:'#zoro'
+        });
+        const sanji = Vue.extend({
+            template:'#sanji'
+        });
+
+        //定义路由
+        const routes = [
+            {path:'/luffy', component:luffy},
+            {path:'/zoro', component:zoro},
+            {path:'/sanji',component:sanji},
+            //设置默认选项
+            {path:'/', redirect:'/luffy'}
+        ];
+
+        //创建路由实例
+        const router = new VueRouter({
+             routes
+        });
+        //创建vue实例
+        new Vue({
+            router
+        }).$mount('#app');
+    </script>
+</body>
+</html>
