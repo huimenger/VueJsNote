@@ -20,6 +20,10 @@
     <script>
         Vue.component('my-btn',{
             template:'#my-btn',
+            //如果不是函数而是对象的话，这意味着所有的组件实例共用一个data。我们应当使用一个函数作为 data 选项，让这个函数返回一个新对象。
+            //如果我们定义一个变量let data = {counter : 0}
+            //然后再在data(){return data}的话，同样是共享了同一个 data ，因此增加一个 counter 会影响所有组件！
+            //所以呢，我们为每个组件返回新的 data 对象来解决这个问题！
             data(){
                 return {
                     counter : 0
